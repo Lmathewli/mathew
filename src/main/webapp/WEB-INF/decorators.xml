@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="GBK"?>
+<decorators defaultdir="/decorators">
+	<!-- 在excludes元素下指定的页面将不会由SiteMesh来装饰-->
+	<excludes>
+		
+		<pattern>/decorators/*</pattern>
+		<pattern>/index.jsp*</pattern>
+		<pattern>/login**</pattern>
+		<pattern>/favicon.ico*</pattern>
+		<pattern>/dwr/*</pattern>
+		
+		<pattern>/bootstrapAdmin/*</pattern>
+		<pattern>/include/*</pattern>
+		<pattern>/resources/*</pattern>
+		
+		<pattern>/sf_print/*</pattern>
+		
+		<pattern>/device2domain**</pattern>
+		<pattern>/tuxiaoer/device2domain**</pattern>
+		<pattern>/httpServe/*</pattern>
+		<pattern>/donglai/*</pattern>
+		<pattern>/FCKeditor/*</pattern>
+		<pattern>/UserFiles/*</pattern>
+		<pattern>/banner/*</pattern>
+		
+	</excludes>
+	<!-- 创建一个名为main的装饰器，该装饰器页面为main.jsp,用于装饰pattern指定的URL的所有页面 -->
+	<decorator name="jc" page="jc.jsp">
+		<pattern>/jc/*</pattern>
+	</decorator>
+	<decorator name="maintain" page="maintain.jsp">
+		<pattern>/maintain/*</pattern>
+	</decorator>
+	<decorator name="wash" page="wash.jsp">
+		<pattern>/wash/*</pattern>
+	</decorator>
+
+	<decorator name="report" page="report.jsp">
+		<pattern>/report/*</pattern>
+	</decorator>
+	
+	<decorator name="main" page="main.jsp">
+		<pattern>/*</pattern>
+	</decorator>
+	
+</decorators>
