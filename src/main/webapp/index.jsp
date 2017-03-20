@@ -63,9 +63,6 @@
                     <li>
                         <a class="page-scroll" href="#contact">Contact</a>
                     </li>
-                    <li>
-                        <spring:message code="welcome" />
-                    </li>
                 </ul>
             </div>
             <!-- /.navbar-collapse -->
