@@ -1,0 +1,10 @@
+.fa {
+    margin-top: 10px;
+}
+form label {
+    color: yellow;
+}
+.no-float {
+    float: none;
+    margin: 0 auto;
+}

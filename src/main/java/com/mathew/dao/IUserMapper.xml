@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"   
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">  
+<!--   
+    namespace：必须与对应的接口全类名一致  
+    id: method name  
+ -->
+
+<mapper namespace="com.mathew.dao.IUserDao">
+    <insert id="insert" parameterType="User">
+        INSERT INTO user VALUES(
+        #{phone}, #{emailAddress},#{password},#{reminderQueryQuestion},
+        #{reminderQueryAnswer},#{screenName},#{qqId},#{weChatId},#{language},
+        #{loginDate}, #{lastLoginDate}, #{lastLoginIP}, #{failedLoginAttempts},
+        #{lockout},#{lockoutDate},,#{agreedToTermsOfUse},#{emailAddressVerified})
+    </insert>
+
+    <update id="update" parameterType="User">
+        UPDATE user SET phone=#{phone}, emailAddress=#{emailAddress},password=#{password},reminderQueryQuestion=#{reminderQueryQuestion},
+        reminderQueryAnswer=#{reminderQueryAnswer},screenName=#{screenName},qqId=#{qqId},weChatId=#{weChatId},language=#{language},
+        loginDate=#{loginDate}, lastLoginDate=#{lastLoginDate}, lastLoginIP=#{lastLoginIP}, failedLoginAttempts=#{failedLoginAttempts},
+        lockout=#{lockout},lockoutDate=#{lockoutDate},,agreedToTermsOfUse=#{agreedToTermsOfUse},emailAddressVerified=#{emailAddressVerified})
+    </update>
+
+    <delete id="delete" parameterType="int">
+        DELETE FROM user WHERE userId=#{userId}
+    </delete>
+
+     <!-- mybsits_config中配置的alias类别名,也可直接配置resultType为类路劲 -->
+    <select id="select" parameterType="int" resultType="User">
+        SELECT * FROM user WHERE userId=#{userId}
+    </select>
+
+    <select id="selectAll" resultType="User">
+        SELECT * FROM user
+    </select>
+
+</mapper>
