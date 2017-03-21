@@ -1,4 +1,4 @@
-package com.mathew.serviceimpl;
+package com.mathew.service.impl;
 
 import com.mathew.model.User;
 import com.mathew.service.IUserService;
