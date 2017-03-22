@@ -44,4 +44,5 @@ public class UserServiceImpl implements IUserService {
     public List<User> findAll() {
         return userDao.selectAll();
     }
+
 }

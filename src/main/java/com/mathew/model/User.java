@@ -22,7 +22,6 @@ public class User {
     private Date lockoutDate;
     private Short agreedToTermsOfUse;
     private Short emailAddressVerified;
-
     public Integer getUserId() {
         return userId;
     }
@@ -131,4 +130,5 @@ public class User {
     public void setEmailAddressVerified(Short emailAddressVerified) {
         this.emailAddressVerified = emailAddressVerified;
     }
+
 }
