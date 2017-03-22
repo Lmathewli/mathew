@@ -35,4 +35,31 @@
         SELECT * FROM user
     </select>
 
+    <select id="count" resultType="int">
+        SELECT count(1) count FROM user
+    </select>
+
+    <resultMap id="BaseResultMap" type="User" extends="SimpleResultMap">
+      <result property="phone" column="phone"/>
+      <result property="emailAddress" column="emailAddress"/>
+      <result property="password" column="password"/>
+      <result property="reminderQueryQuestion" column="reminderQueryQuestion"/>
+      <result property="reminderQueryAnswer" column="reminderQueryAnswer"/>
+      <result property="screenName" column="screenName"/>
+      <result property="qqId" column="qqId"/>
+      <result property="weChatId" column="weChatId"/>
+      <result property="language" column="language"/>
+      <result property="loginDate" column="loginDate"/>
+      <result property="lastLoginDate" column="lastLoginDate"/>
+      <result property="lastLoginIP" column="lastLoginIP"/>
+      <result property="failedLoginAttempts" column="failedLoginAttempts"/>
+      <result property="lockout" column="lockout"/>
+      <result property="lockoutDate" column="lockoutDate"/>
+      <result property="agreedToTermsOfUse" column="agreedToTermsOfUse"/>
+      <result property="emailAddressVerified" column="emailAddressVerified"/>
+    </resultMap>
+    <select id="selectPagination" resultType="BaseResultMap" parameterType="int">
+        SELECT * count FROM user LIMIT #{currentPage}, #{pageSize}
+    </select>
+
 </mapper>

@@ -19,4 +19,8 @@ public interface BaseDao<T, ID extends Serializable> {
 
     public List<T> selectAll();
 
+    public int count();
+
+    public List<T> selectPagination(int currentPage, int pageSize);
+
 }

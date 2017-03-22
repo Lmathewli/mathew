@@ -45,4 +45,14 @@ public class UserServiceImpl implements IUserService {
         return userDao.selectAll();
     }
 
+    @Override
+    public int count() {
+        return userDao.count();
+    }
+
+    @Override
+    public List<User> selectPagination(int currentPage, int pageSize) {
+        return userDao.selectPagination(currentPage, pageSize);
+    }
+
 }
