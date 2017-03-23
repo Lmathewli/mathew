@@ -9,10 +9,10 @@
     <uri>pages</uri>
     <tag>
         <name>page</name>
-        <tag-class>com.mathew.utils.tags.PagesTags</tag-class>
+        <tag-class>com.mathew.utils.tags.page.PagesTags</tag-class>
         <body-content>empty</body-content>
         <attribute>
-            <name>pageContent</name>
+            <name>paginationContext</name>
             <required>true</required>
             <rtexprvalue>true</rtexprvalue>
             <type>com.mathew.utils.tags.PagesTags</type>

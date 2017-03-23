@@ -10,12 +10,22 @@ public class Page<E> {
     private int pageSize = PageConstants.PAGES_SIZE;
     private List<E> context;
 
+    private String url;
+
     public List<E> getContext() {
         return context;
     }
 
     public void setContext(List<E> context) {
         this.context = context;
+    }
+
+    public String getUrl() {
+        return url;
+    }
+
+    public void setUrl(String url) {
+        this.url = url;
     }
 
     public int getCurrentPage() {

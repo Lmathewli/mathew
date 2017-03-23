@@ -9,8 +9,9 @@
 </head>
 <body>
     <form action="profile" method="get">
-      <pages:page pageContent="${pageContent }"/>
-      <c:forEach items="${pageContent.content }" var="user">
+      <pages:page paginationContext="${paginationContext }"/>
+
+      <c:forEach items="${paginationContext.context }" var="user">
         <c:out value="${user.screenName }"></c:out>
       </c:forEach>
     </form>

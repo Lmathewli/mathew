@@ -2,6 +2,7 @@ package com.mathew.service.impl;
 
 import java.io.Serializable;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -9,6 +10,7 @@ import org.springframework.stereotype.Service;
 import com.mathew.dao.IUserDao;
 import com.mathew.model.User;
 import com.mathew.service.IUserService;
+import com.mathew.utils.tags.page.PageConstants;
 @Service
 public class UserServiceImpl implements IUserService {
 
@@ -51,8 +53,9 @@ public class UserServiceImpl implements IUserService {
     }
 
     @Override
-    public List<User> selectPagination(int currentPage, int pageSize) {
-        return userDao.selectPagination(currentPage, pageSize);
+    public List<User> selectPagination(Map<String, Integer> map) {
+
+        return userDao.selectPagination(map);
     }
 
 }

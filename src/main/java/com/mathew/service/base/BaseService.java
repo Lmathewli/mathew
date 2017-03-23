@@ -2,6 +2,7 @@ package com.mathew.service.base;
 
 import java.io.Serializable;
 import java.util.List;
+import java.util.Map;
 
 import net.sf.ehcache.search.aggregator.Count;
 
@@ -20,5 +21,5 @@ public interface BaseService<T, ID extends Serializable> {
 
     public int count();
 
-    public List<T> selectPagination(int currentPage, int pageSize);
+    public List<T> selectPagination(Map<String, Integer> map);
 }
