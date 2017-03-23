@@ -31,11 +31,24 @@ public class PagesTags<T> extends TagSupport implements Serializable {
         }
 
         try {
-            out.print("<a href='javascript:go(" + pre + ")'>Previous</a>" + "total page:" + paginationContext.getTotalPage() + "Current Page:"
-            + paginationContext.getCurrentPage() + "<a href='javascript:go("+ next +")'>Next</a>");
-            out.print("<script> function go(currentPage) {if (currentPage < 1) {alert('This is the first page.');} else if(currentPage >'" + paginationContext.getTotalPage() + "') {alert('This is the last page.');}}} else {location.href='"+ paginationContext.getUrl() +"?currentPage=""'} </script>");
+            out.print("<a href='javascript:go(" + pre + ")'>Previous</a>" + "total page:"
+                    + paginationContext.getTotalPage() + "Current Page:"
+                    + paginationContext.getCurrentPage() + "<a href='javascript:go(" + next + ")'>Next</a>");
+            out.print(
+                    "<script> function go(currentPage) {if (currentPage < 1) {alert('This is the first page.');} "
+                            + "else if(currentPage >'"
+                            + paginationContext.getTotalPage()
+                            + "') {alert('This is the last page.');}}} else {location.href='"
+                            + paginationContext.getUrl() + "?currentPage=" + paginationContext.getCurrentPage()
+                            + "'} </script>");
         } catch (IOException e) {
             e.printStackTrace();
+        } finally {
+            try {
+                out.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
 
         return super.doStartTag();
