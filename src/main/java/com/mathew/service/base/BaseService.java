@@ -4,8 +4,6 @@ import java.io.Serializable;
 import java.util.List;
 import java.util.Map;
 
-import net.sf.ehcache.search.aggregator.Count;
-
 public interface BaseService<T, ID extends Serializable> {
     public int add(T record);
 

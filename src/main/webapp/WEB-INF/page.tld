@@ -15,7 +15,12 @@
             <name>paginationContext</name>
             <required>true</required>
             <rtexprvalue>true</rtexprvalue>
-            <type>com.mathew.utils.tags.PagesTags</type>
+            <type>com.mathew.utils.tags.page.Page</type>
         </attribute>
+    </tag>
+    <tag>
+        <name>urlPrefix</name>
+        <tag-class>com.mathew.utils.tags.urlprefix.UrlPrefixTag</tag-class>
+        <body-content>empty</body-content>
     </tag>
 </taglib>

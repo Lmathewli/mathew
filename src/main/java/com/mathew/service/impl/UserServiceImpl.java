@@ -10,7 +10,6 @@ import org.springframework.stereotype.Service;
 import com.mathew.dao.IUserDao;
 import com.mathew.model.User;
 import com.mathew.service.IUserService;
-import com.mathew.utils.tags.page.PageConstants;
 @Service
 public class UserServiceImpl implements IUserService {
 

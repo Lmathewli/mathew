@@ -30,6 +30,7 @@ import java.util.TreeSet;
 /**
  * @author Brian Wing Shun Chan
  */
+@SuppressWarnings("unchecked")
 public class ArrayUtil {
 
     public static boolean[] append(boolean[]... arrays) {

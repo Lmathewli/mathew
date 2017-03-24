@@ -15,6 +15,7 @@ public class PageUtil<T> {
      * @param currentPage
      * @param iService
      * @param url
+     * <h2>Page<User> page = pageUtil.convertToPage(currentPage, userService, "/mathew/signin");</h2>
      * @return
      */
     public Page<T> convertToPage(int currentPage, BaseService<T, Serializable> iService, String url) {

@@ -22,11 +22,19 @@
         class="org.springframework.context.support.ReloadableResourceBundleMessageSource">
         <property name="basename" value="classpath:messages" />
     </bean>
- 
+
     <mvc:interceptors>
-        <bean id="localeChangeInterceptor"
-            class="org.springframework.web.servlet.i18n.LocaleChangeInterceptor">
-            <property name="paramName" value="lang" />
-        </bean>
+        <mvc:interceptor>
+            <mvc:mapping path="/**"/>
+            <bean id="localeChangeInterceptor" class="org.springframework.web.servlet.i18n.LocaleChangeInterceptor">
+                <property name="paramName" value="lang" />
+            </bean>
+        </mvc:interceptor>
+        <mvc:interceptor>
+            <!-- 如果不配置或/**,将拦截所有的Controller -->
+            <!-- 拦截所有的控制器 -->
+            <mvc:mapping path="/**"/>
+            <bean class="interceptor.ViewPermissionInterceptor"></bean>
+        </mvc:interceptor>
     </mvc:interceptors>
 </beans>

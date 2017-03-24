@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ProjectTreeState projectID="oE76f1qGAqAAawAQ" projectPath="D:\git-code\mathew\src\main\resources\uml\test01.vpp">
+	<TreeState name="ModelRepository" viewX="0" viewY="0">
+		<ExpandedPath>ModelRepository</ExpandedPath>
+	</TreeState>
+	<TreeState name="DiagramNavigator" viewX="0" viewY="18">
+		<ExpandedPath>DiagramNavigator</ExpandedPath>
+		<ExpandedPath>DiagramNavigator,UML Diagrams</ExpandedPath>
+		<ExpandedPath>UseCaseDiagram</ExpandedPath>
+		<ExpandedPath>ActivityDiagram</ExpandedPath>
+		<ExpandedPath>DiagramNavigator,Requirements Capturing</ExpandedPath>
+		<ExpandedPath>DiagramNavigator,Database Modeling</ExpandedPath>
+		<ExpandedPath>ERDiagram</ExpandedPath>
+		<ExpandedPath>DiagramNavigator,SysML</ExpandedPath>
+		<ExpandedPath>DiagramNavigator,Enterprise Modeling</ExpandedPath>
+		<SelectedPath>ActivityDiagram,LZlTf1qGAqAAawWP</SelectedPath>
+	</TreeState>
+	<TreeState name="ClassBrowser" viewX="0" viewY="0">
+		<ExpandedPath>ClassBrowser</ExpandedPath>
+		<SelectedPath>ClassBrowser,ClassBrowser</SelectedPath>
+	</TreeState>
+	<TreeState name="LogicalView" viewX="0" viewY="0"/>
+</ProjectTreeState>
