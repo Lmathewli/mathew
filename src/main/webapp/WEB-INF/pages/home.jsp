@@ -411,11 +411,11 @@
                         <div class="row">
                             <div class="col-md-6 no-float">
                                 <div class="form-group">
-                                    <label>Email *</label><input type="email" name="user.email" class="form-control" id="email" required data-validation-required-message="Please enter your email address.">
+                                    <label>Email *</label><input type="email" name="emailAddress" class="form-control" id="email" required data-validation-required-message="Please enter your email address.">
                                     <p class="help-block text-danger"></p>
                                 </div>
                                 <div class="form-group">
-                                    <label>Password *</label><input type="password" name="user.password" class="form-control" id="password" required data-validation-required-message="Please enter your password.">
+                                    <label>Password *</label><input type="password" name="password" class="form-control" id="password" required data-validation-required-message="Please enter your password.">
                                     <p class="help-block text-danger"></p>
                                 </div>
                             </div>

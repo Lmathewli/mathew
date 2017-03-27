@@ -23,8 +23,8 @@ public class PagesTags<T> extends TagSupport implements Serializable {
     @Override
     public int doStartTag() throws JspException {
         JspWriter out = pageContext.getOut();
-        int pre = paginationContext.getCurrentPage() - 1;
-        int next = paginationContext.getCurrentPage() + 1;
+        long pre = paginationContext.getCurrentPage() - 1;
+        long next = paginationContext.getCurrentPage() + 1;
 
         if (paginationContext.getTotalPage() < 0) {
             return super.doStartTag();

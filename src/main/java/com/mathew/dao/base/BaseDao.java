@@ -1,27 +1,29 @@
 package com.mathew.dao.base;
 
-import java.io.Serializable;
 import java.util.List;
-import java.util.Map;
 
+import org.springframework.data.mongodb.core.query.Query;
+import org.springframework.data.mongodb.core.query.Update;
 import org.springframework.stereotype.Repository;
 
+import com.mathew.utils.tags.page.Page;
 @Repository
-public interface BaseDao<T, ID extends Serializable> {
-    public int insert(T record);
+public interface BaseDao<T> {
+    public void insert(T entity);
 
-    public int delete(ID id);
+    public void delete(Query query);
 
-    public int deleteAll(T[] records);
+    public List<T> find(Query query);
 
-    public int update(T record);
+    public T findOne(Query query);
 
-    public T select(ID id);
+    public void update(Query query, Update update);
 
-    public List<T> selectAll();
+    public void updateMulti(Query query, Update update);
 
-    public int count();
+    public T findById(String id);
 
-    public List<T> selectPagination(Map<String, Integer> map);
+    public long count(Query query);
 
+    public Page<T> getPage(int currentPage, Query query);
 }

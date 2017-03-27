@@ -131,4 +131,19 @@ public class User {
         this.emailAddressVerified = emailAddressVerified;
     }
 
+    @Override
+    public String toString() {
+        return "{User {userId:" + userId + ", phone:" + phone
+                + ", emailAddress:" + emailAddress + ", password:" + password
+                + ", reminderQueryQuestion:" + reminderQueryQuestion
+                + ", reminderQueryAnswer:" + reminderQueryAnswer
+                + ", screenName:" + screenName + ", qqId:" + qqId
+                + ", weChatId:" + weChatId + ", language:" + language
+                + ", loginDate:" + loginDate + ", lastLoginDate:"
+                + lastLoginDate + ", lastLoginIP:" + lastLoginIP
+                + ", failedLoginAttempts:" + failedLoginAttempts + ", lockout:"
+                + lockout + ", lockoutDate:" + lockoutDate
+                + ", agreedToTermsOfUse:" + agreedToTermsOfUse
+                + ", emailAddressVerified:" + emailAddressVerified + "}}";
+    }
 }

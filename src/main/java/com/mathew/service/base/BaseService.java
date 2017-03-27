@@ -1,23 +1,28 @@
 package com.mathew.service.base;
 
-import java.io.Serializable;
 import java.util.List;
-import java.util.Map;
 
-public interface BaseService<T, ID extends Serializable> {
-    public int add(T record);
+import org.springframework.data.mongodb.core.query.Query;
+import org.springframework.data.mongodb.core.query.Update;
 
-    public int delete(ID id);
+import com.mathew.utils.tags.page.Page;
 
-    public int deleteAll(T[] records);
+public interface BaseService<T> {
+    public void insert(T entity);
 
-    public int update(T record);
+    public void delete(Query query);
 
-    public T find(ID id);
+    public List<T> find(Query query);
 
-    public List<T> findAll();
+    public T findOne(Query query);
 
-    public int count();
+    public void update(Query query, Update update);
 
-    public List<T> selectPagination(Map<String, Integer> map);
+    public void updateMulti(Query query, Update update);
+
+    public T findById(String id);
+
+    public long count(Query query);
+
+    public Page<T> getPage(int currentPage, Query query);
 }

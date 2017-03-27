@@ -1,23 +1,22 @@
-package com.mathew.service.impl;
+package com.mathew.service.base.impl;
 
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.data.mongodb.core.query.Update;
-import org.springframework.stereotype.Service;
 
 import com.mathew.dao.base.BaseDao;
-import com.mathew.service.base.impl.BaseMongoServiceImpl;
-@Service
-public class UserServiceImpl<User> extends BaseMongoServiceImpl<User> {
+import com.mathew.service.base.BaseService;
+import com.mathew.utils.tags.page.Page;
+
+public class BaseMongoServiceImpl<T> implements BaseService<T> {
 
     @Autowired
-    private BaseDao<User> dao;
-
+    private BaseDao<T> dao;
     @Override
-    public void insert(User entity) {
-        dao.insert(entity);
+    public void insert(T entity) {
+       dao.insert(entity);
     }
 
     @Override
@@ -26,12 +25,12 @@ public class UserServiceImpl<User> extends BaseMongoServiceImpl<User> {
     }
 
     @Override
-    public List<User> find(Query query) {
+    public List<T> find(Query query) {
         return dao.find(query);
     }
 
     @Override
-    public User findOne(Query query) {
+    public T findOne(Query query) {
         return dao.findOne(query);
     }
 
@@ -46,7 +45,7 @@ public class UserServiceImpl<User> extends BaseMongoServiceImpl<User> {
     }
 
     @Override
-    public User findById(String id) {
+    public T findById(String id) {
         return dao.findById(id);
     }
 
@@ -55,5 +54,9 @@ public class UserServiceImpl<User> extends BaseMongoServiceImpl<User> {
         return dao.count(query);
     }
 
-    
+    @Override
+    public Page<T> getPage(int currentPage, Query query) {
+        return dao.getPage(currentPage, query);
+    }
+
 }

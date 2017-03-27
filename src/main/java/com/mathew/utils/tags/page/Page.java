@@ -5,9 +5,9 @@ import java.util.List;
 import com.mathew.utils.core.GetterUtil;
 
 public class Page<E> {
-    private int currentPage;//总页数
-    private int totalCount;//总记录数
-    private int pageSize = PageConstants.PAGES_SIZE;
+    private long currentPage;//总页数
+    private long totalCount;//总记录数
+    private long pageSize = PageConstants.PAGES_SIZE;
     private List<E> context;
 
     private String url;
@@ -28,19 +28,19 @@ public class Page<E> {
         this.url = url;
     }
 
-    public int getCurrentPage() {
+    public long getCurrentPage() {
         return currentPage;
     }
 
-    public void setCurrentPage(int currentPage) {
+    public void setCurrentPage(long currentPage) {
         this.currentPage = currentPage;
     }
 
-    public int getTotalCount() {
+    public long getTotalCount() {
         return totalCount;
     }
 
-    public void setTotalCount(int totalCount) {
+    public void setTotalCount(long totalCount) {
         this.totalCount = totalCount;
     }
 
@@ -48,11 +48,11 @@ public class Page<E> {
         return GetterUtil.getInteger(Math.ceil(totalCount / pageSize));
     }
 
-    public int getPageSize() {
+    public long getPageSize() {
         return pageSize;
     }
 
-    public void setPageSize(int pageSize) {
+    public void setPageSize(long pageSize) {
         this.pageSize = pageSize;
     }
 
