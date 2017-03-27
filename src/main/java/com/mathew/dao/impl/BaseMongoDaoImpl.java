@@ -11,79 +11,69 @@ import org.springframework.data.mongodb.core.query.Update;
 import org.springframework.stereotype.Repository;
 
 import com.mathew.dao.base.BaseDao;
+import com.mathew.model.User;
 import com.mathew.utils.core.GetterUtil;
 import com.mathew.utils.tags.page.Page;
 import com.mathew.utils.tags.page.PageConstants;
+import com.mongodb.WriteResult;
+
 @Repository
-public class BaseMongoDaoImpl<T> implements BaseDao<T>{
+public class BaseMongoDaoImpl<T> implements BaseDao<T> {
 
-    @Autowired private MongoTemplate mongoTemplate;
+    @Autowired
+    private MongoTemplate mongoTemplate;
 
-    @Override
-    public void insert(T entity) {
-        mongoTemplate.save(entity);
+    /**
+     * 注入mongodbTemplate
+     *
+     * @param mongoTemplate
+     */
+    protected void setMongoTemplate(MongoTemplate mongoTemplate) {
+        this.mongoTemplate = mongoTemplate;
     }
 
     @Override
-    public void delete(Query query){
-        mongoTemplate.remove(query, getClazz());
-    }
-
-    @Override
-    public List<T> find(Query query) {
-        return mongoTemplate.find(query, getClazz());
-    }
-
-    @Override
-    public T findOne(Query query) {
-        return mongoTemplate.findOne(query, getClazz());
-    }
-
-    @Override
-    public void update(Query query, Update update) {  
-        mongoTemplate.findAndModify(query, update, getClazz());
-    }
-
-    //批量更新
-    @Override
-    public void updateMulti(Query query, Update update) {  
-        mongoTemplate.updateMulti(query, update, getClazz());  
+    public T save(T entity) {
+        mongoTemplate.insert(entity);
+        return entity;
     }
 
     @Override
     public T findById(String id) {
-        return mongoTemplate.findById(id, getClazz());  
+        return mongoTemplate.findById(id, this.getEntityClass());
     }
 
     @Override
-    public long count(Query query){
-        return mongoTemplate.count(query, getClazz());
+    public T findById(String id, String collectionName) {
+        return mongoTemplate.findById(id, this.getEntityClass(), collectionName);
     }
 
-    @SuppressWarnings("unchecked")
-    public Class<T> getClazz() {
-        Class<T> clazz = null;
-        Type genericSuperclass = getClass().getGenericSuperclass();
+    @Override
+    public List<T> findAll() {
+        return mongoTemplate.findAll(this.getEntityClass());
+    }
 
-        if (genericSuperclass instanceof ParameterizedType) {
-            //参数化类型  
-            ParameterizedType parameterizedType= (ParameterizedType) genericSuperclass;  
-            //返回表示此类型实际类型参数的 Type 对象的数组  
-            Type[] actualTypeArguments = parameterizedType.getActualTypeArguments();  
-            clazz= (Class<T>) actualTypeArguments[0];  
-        }else{  
-            clazz= (Class<T>)genericSuperclass;  
-        }
+    @Override
+    public List<T> findAll(String collectionName) {
+        return mongoTemplate.findAll(this.getEntityClass(), collectionName);
+    }
 
-        return clazz;  
+    @Override
+    public List find(Query query) {
+        return mongoTemplate.find(query, User.class);
+    }
+
+    @Override
+    public T findOne(Query query) {
+        return mongoTemplate.findOne(query, this.getEntityClass());
     }
 
     @Override
     public Page<T> getPage(int currentPage, Query query) {
         Page<T> page = new Page<T>();
-        //获取总条数  
+        // 获取总条数
         long totalCount = count(query);
-        //总页数  
+        // 总页数
         page.setTotalCount(totalCount);
         long totalPage = page.getTotalPage();
 
@@ -96,11 +86,71 @@ public class BaseMongoDaoImpl<T> implements BaseDao<T>{
         }
 
         int skip = (currentPage - 1) * PageConstants.PAGES_SIZE;
-        query.skip(skip);// skip相当于从那条记录开始  
-        query.limit(PageConstants.PAGES_SIZE);// 从skip开始,取多少条记录  
-        List<T> datas = this.find(query);  
+        query.skip(skip);// skip相当于从那条记录开始
+        query.limit(PageConstants.PAGES_SIZE);// 从skip开始,取多少条记录
+        List<T> datas = this.find(query);
         page.setContext(datas);
 
-        return page;  
+        return page;
+    }
+
+    @Override
+    public long count(Query query) {
+        return mongoTemplate.count(query, this.getEntityClass());
+    }
+
+    @Override
+    public WriteResult update(Query query, Update update) {
+        if (update == null) {
+            return null;
+        }
+        return mongoTemplate.updateMulti(query, update, this.getEntityClass());
+    }
+
+    @Override
+    public T updateOne(Query query, Update update) {
+        if (update == null) {
+            return null;
+        }
+        return mongoTemplate.findAndModify(query, update, this.getEntityClass());
+    }
+
+    @Override
+    public void remove(Query query) {
+        mongoTemplate.remove(query, this.getEntityClass());
+    }
+
+    /**
+     * 获得泛型类
+     */
+    private Class<T> getEntityClass() {
+        return getSuperClassGenricType(getClass(), 0);
+    }
+
+    public static Class getSuperClassGenricType(final Class clazz,
+            final int index) {
+
+        Type genType = clazz.getGenericSuperclass();
+
+        if (!(genType instanceof ParameterizedType)) {
+            return Object.class;
+        }
+
+        Type[] params = ((ParameterizedType) genType).getActualTypeArguments();
+
+        if (index >= params.length || index < 0) {
+            return Object.class;
+        }
+        if (!(params[index] instanceof Class)) {
+            return Object.class;
+        }
+
+        return (Class) params[index];
+    }
+
+    @Override
+    public WriteResult update(T entity) {
+        // TODO Auto-generated method stub
+        return null;
     }
 }

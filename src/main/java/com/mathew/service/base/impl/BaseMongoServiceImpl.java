@@ -14,14 +14,15 @@ public class BaseMongoServiceImpl<T> implements BaseService<T> {
 
     @Autowired
     private BaseDao<T> dao;
+
     @Override
     public void insert(T entity) {
-       dao.insert(entity);
+        dao.save(entity);
     }
 
     @Override
     public void delete(Query query) {
-        dao.delete(query);
+        dao.remove(query);
     }
 
     @Override
@@ -41,7 +42,7 @@ public class BaseMongoServiceImpl<T> implements BaseService<T> {
 
     @Override
     public void updateMulti(Query query, Update update) {
-        dao.updateMulti(query, update);
+        dao.update(query, update);
     }
 
     @Override

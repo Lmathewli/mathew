@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import com.mathew.dao.base.BaseDao;
 import com.mathew.service.base.impl.BaseMongoServiceImpl;
+
 @Service
 public class UserServiceImpl<User> extends BaseMongoServiceImpl<User> {
 
@@ -17,12 +18,12 @@ public class UserServiceImpl<User> extends BaseMongoServiceImpl<User> {
 
     @Override
     public void insert(User entity) {
-        dao.insert(entity);
+        dao.save(entity);
     }
 
     @Override
     public void delete(Query query) {
-        dao.delete(query);
+        dao.remove(query);
     }
 
     @Override
@@ -42,7 +43,7 @@ public class UserServiceImpl<User> extends BaseMongoServiceImpl<User> {
 
     @Override
     public void updateMulti(Query query, Update update) {
-        dao.updateMulti(query, update);
+        dao.update(query, update);
     }
 
     @Override
@@ -55,5 +56,4 @@ public class UserServiceImpl<User> extends BaseMongoServiceImpl<User> {
         return dao.count(query);
     }
 
-    
 }
