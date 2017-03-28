@@ -67,11 +67,6 @@ public interface BaseDao<T> {
     public T updateOne(Query query, Update update);
 
     /**
-     * 根据传入实体ID更新
-     */
-    public WriteResult update(T entity);
-
-    /**
      * 根据条件 删除
      *
      * @param query

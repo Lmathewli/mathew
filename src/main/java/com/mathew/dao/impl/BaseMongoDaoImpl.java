@@ -1,7 +1,5 @@
 package com.mathew.dao.impl;
 
-import java.lang.reflect.ParameterizedType;
-import java.lang.reflect.Type;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,15 +21,6 @@ public class BaseMongoDaoImpl<T> implements BaseDao<T> {
     @Autowired
     private MongoTemplate mongoTemplate;
 
-    /**
-     * 注入mongodbTemplate
-     *
-     * @param mongoTemplate
-     */
-    protected void setMongoTemplate(MongoTemplate mongoTemplate) {
-        this.mongoTemplate = mongoTemplate;
-    }
-
     @Override
     public T save(T entity) {
         mongoTemplate.insert(entity);
@@ -40,12 +29,12 @@ public class BaseMongoDaoImpl<T> implements BaseDao<T> {
 
     @Override
     public T findById(String id) {
-        return mongoTemplate.findById(id, this.getEntityClass());
+        return (T) mongoTemplate.findById(id, User.class);
     }
 
     @Override
     public T findById(String id, String collectionName) {
-        return mongoTemplate.findById(id, this.getEntityClass(), collectionName);
+        return (T) mongoTemplate.findById(id, this.getEntityClass(), collectionName);
     }
 
     @Override
@@ -59,13 +48,13 @@ public class BaseMongoDaoImpl<T> implements BaseDao<T> {
     }
 
     @Override
-    public List find(Query query) {
-        return mongoTemplate.find(query, User.class);
+    public List<T> find(Query query) {
+        return mongoTemplate.find(query, getEntityClass());
     }
 
     @Override
     public T findOne(Query query) {
-        return mongoTemplate.findOne(query, this.getEntityClass());
+        return (T) mongoTemplate.findOne(query, User.class);
     }
 
     @Override
@@ -112,7 +101,7 @@ public class BaseMongoDaoImpl<T> implements BaseDao<T> {
         if (update == null) {
             return null;
         }
-        return mongoTemplate.findAndModify(query, update, this.getEntityClass());
+        return (T) mongoTemplate.findAndModify(query, update, this.getEntityClass());
     }
 
     @Override
@@ -123,34 +112,8 @@ public class BaseMongoDaoImpl<T> implements BaseDao<T> {
     /**
      * 获得泛型类
      */
-    private Class<T> getEntityClass() {
-        return getSuperClassGenricType(getClass(), 0);
-    }
-
-    public static Class getSuperClassGenricType(final Class clazz,
-            final int index) {
-
-        Type genType = clazz.getGenericSuperclass();
-
-        if (!(genType instanceof ParameterizedType)) {
-            return Object.class;
-        }
-
-        Type[] params = ((ParameterizedType) genType).getActualTypeArguments();
-
-        if (index >= params.length || index < 0) {
-            return Object.class;
-        }
-        if (!(params[index] instanceof Class)) {
-            return Object.class;
-        }
-
-        return (Class) params[index];
-    }
-
-    @Override
-    public WriteResult update(T entity) {
-        // TODO Auto-generated method stub
-        return null;
+    @SuppressWarnings("unchecked")
+    private Class getEntityClass() {
+        return User.class;
     }
 }

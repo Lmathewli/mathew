@@ -5,8 +5,9 @@ import java.util.Date;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.index.CompoundIndex;
 import org.springframework.data.mongodb.core.index.CompoundIndexes;
-import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
+
+import com.mathew.utils.core.MD5Util;
 
 @Document(collection = "user")
 @CompoundIndexes({
@@ -15,14 +16,11 @@ import org.springframework.data.mongodb.core.mapping.Document;
 public class User {
 
     @Id
-    @Indexed(unique = true)
     private String _id;
-
+    private String userId;
     private Integer age;
     private String phone;
-    @Indexed
     private String emailAddress;
-    @Indexed
     private String password;
     private String reminderQueryQuestion;
     private String reminderQueryAnswer;
@@ -39,12 +37,13 @@ public class User {
     private Short agreedToTermsOfUse;
     private Short emailAddressVerified;
 
-    public String getUserId() {
+
+    public String get_id() {
         return _id;
     }
 
-    public void setUserId(String userId) {
-        this._id = userId;
+    public void set_id(String _id) {
+        this._id = _id;
     }
 
     public Integer getAge() {
@@ -76,7 +75,7 @@ public class User {
     }
 
     public void setPassword(String password) {
-        this.password = password;
+        this.password = MD5Util.getMD5String(password);
     }
 
     public String getReminderQueryQuestion() {
@@ -193,17 +192,18 @@ public class User {
 
     @Override
     public String toString() {
-        return "{User {userId:" + _id + ", phone:" + phone
-                + ", emailAddress:" + emailAddress + ", password:" + password
-                + ", reminderQueryQuestion:" + reminderQueryQuestion
-                + ", reminderQueryAnswer:" + reminderQueryAnswer
-                + ", screenName:" + screenName + ", qqId:" + qqId
-                + ", weChatId:" + weChatId + ", language:" + language
-                + ", loginDate:" + loginDate + ", lastLoginDate:"
+        return "{User {_id:" + _id + ", userId:" + userId + ", age:" + age
+                + ", phone:" + phone + ", emailAddress:" + emailAddress
+                + ", password:" + password + ", reminderQueryQuestion:"
+                + reminderQueryQuestion + ", reminderQueryAnswer:"
+                + reminderQueryAnswer + ", screenName:" + screenName
+                + ", qqId:" + qqId + ", weChatId:" + weChatId + ", language:"
+                + language + ", loginDate:" + loginDate + ", lastLoginDate:"
                 + lastLoginDate + ", lastLoginIP:" + lastLoginIP
                 + ", failedLoginAttempts:" + failedLoginAttempts + ", lockout:"
                 + lockout + ", lockoutDate:" + lockoutDate
                 + ", agreedToTermsOfUse:" + agreedToTermsOfUse
                 + ", emailAddressVerified:" + emailAddressVerified + "}}";
     }
+
 }

@@ -1,39 +1,8 @@
-<%@taglib prefix="mvc" uri="http://www.springframework.org/tags/form" %>
-<%@taglib prefix="spring" uri="http://www.springframework.org/tags" %>
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@taglib prefix="mvc" uri="http://www.springframework.org/tags/form" %>
-<%@taglib prefix="spring" uri="http://www.springframework.org/tags" %>
-<%@ taglib  prefix="pages"  uri="pages"%>
-
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
+<%@ include file = "template/header.jsp" %>
 <head>
-    <title>home</title>
-    <!-- Bootstrap Core CSS -->
-    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-
-    <!-- Custom Fonts -->
-    <link href="vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
-    <link href='https://fonts.googleapis.com/css?family=Kaushan+Script' rel='stylesheet' type='text/css'>
-    <link href='https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
-    <link href='https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700' rel='stylesheet' type='text/css'>
-
-    <!-- Theme CSS -->
-    <link href="css/agency.min.css" rel="stylesheet">
-    <link href="css/custom.css" rel="stylesheet">
-
-    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js" integrity="sha384-0s5Pv64cNZJieYFkXYOTId2HMA2Lfb6q2nAcx2n0RTLUnCAoTTsS0nKEO27XyKcY" crossorigin="anonymous"></script>
-        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js" integrity="sha384-ZoaMbDF+4LeFxg6WdScQ9nnR1QC2MIRxA1O9KWEXQwns1G8UNyIEZIQidzb0T1fo" crossorigin="anonymous"></script>
-    <![endif]-->
-
+  <title><spring:message code="welcome"></spring:message></title>
 </head>
-
 <body id="page-top" class="index">
-
     <!-- Navigation -->
     <nav id="mainNav" class="navbar navbar-default navbar-custom navbar-fixed-top">
         <div class="container">
@@ -63,11 +32,12 @@
                     <li>
                         <a class="page-scroll" href="#team">Team</a>
                     </li>
+                    
                     <li>
-                        <a class="page-scroll" href="#contact">Sign in</a>
+                        <a class="page-scroll" href="#contact">Sign In</a>
                     </li>
                     <li>
-                        <a class="page-scroll" href="?lang=en_US"><spring:message code="cn" /></a>
+                        <a class="page-scroll" href="#signUp">Sign Up</a>
                     </li>
                 </ul>
             </div>
@@ -423,7 +393,95 @@
                             <div class="col-lg-12 text-center">
                                 <div id="success"></div>
                                 <button type="submit" class="btn btn-xl"><spring:message code="sign_in"/></button>
-                                <a href="#" class="btn btn-xl"><spring:message code="sign_up"/></a>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="signUp">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 text-center">
+                    <h2 class="section-heading"><spring:message code="sign_in"/></h2>
+                    <h3 class="section-subheading text-muted"><spring:message code="memory"/></h3>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-12">
+                    <form name="form" id="" action="<pages:urlPrefix/>signup" method="POST">
+                        <div class="row">
+                            <div class="page-header">
+                    <h2 class="text-center text-warning">
+                        <i class="glyphicon glyphicon-comment"></i> 
+                    </h2>
+                </div>  
+                <div class="channel-type">
+                    <ul>
+                        <li class="active" data-type="phone">
+                            <span class="mdi-hardware-phone-iphone"></span>
+                            <span class="text-hidden"> 手机注册</span>
+                        </li><li data-type="email">
+                            <span class="mdi-maps-local-post-office"></span>
+                            <span class="text-hidden"> 邮箱注册</span>
+                        </li>
+                    </ul>
+
+                </div>
+                <div class="clearfix"></div>
+                <div class="input-group input-group-lg">
+                  <span class="input-group-addon"><span class="mdi-action-account-circle"></span></span>
+                  <input type="text" id="fullname" name="fullname" class="form-control validate[required,custom[onlyChineseLetterNumber],minSize[2]]" placeholder="用户昵称">
+                </div>
+                
+                <div class="input-group input-group-lg" style="display: none;">
+                  <span class="input-group-addon"><span class="mdi-communication-email"></span></span>
+                  <input type="text" id="mail" name="email" class="form-control validate[required,custom[email]]" placeholder="注册邮箱">
+                </div>
+
+                <div class="input-group input-group-lg">
+                    <span class="input-group-addon"><span class="mdi-communication-phone"></span></span>
+                    <input type="text" id="phone" name="phone" class="form-control validate[required,custom[phone]]" placeholder="注册手机号">
+                </div>
+
+                <div class="input-group input-group-lg">
+                    <span class="input-group-addon"><span class="mdi-action-settings-cell"></span></span>
+                    <input type="number" id="phone-captcha" class="form-control" placeholder="输入6位验证码">
+                    <span class="input-group-btn">
+                        <button href="javascript:;" class="btn btn-primary btn-flat phone-captcha" role="button" data-count="60">
+                            <span class="mdi-content-send"></span>
+                            <span class="text-hidden">获取手机验证码</span>
+                        </button>
+                    </span>
+                </div>
+
+                <div class="input-group input-group-lg">
+                  <span class="input-group-addon"><span class="mdi-hardware-keyboard"></span></span>
+                  <input type="password" id="pwd" name="password" class="form-control validate[required,minSize[6]]" placeholder="登录密码">
+                </div>
+                
+                <div class="input-group input-group-lg" style="display: none;">
+                  <span class="input-group-addon"><span class="mdi-action-work"></span></span>
+                  <input type="text" id="captcha" name="captcha" class="form-control validate[required,minSize[7]]" placeholder="请输入验证码">
+                </div>
+
+                <div class="input-group input-group-lg" style="display: none;width:100%;height:50px;margin:0 auto;background:#FFF;">
+                  <div class="form-control" id="gbcaptchawrapper">
+                    <img class="img-responsive" alt="验证图片" src="/gb/gbcaptcha">
+                  </div>
+                  
+                  <span class="input-group-addon">
+                    <a class="btn btn-primary" id="refreshCaptcha"><span class="glyphicon glyphicon-refresh"></span></a>
+                  </span>
+                </div>
+                
+                <hr>
+                            <div class="col-lg-12 text-center">
+                                <div id="success"></div>
+                                <button type="submit" class="btn btn-xl"><spring:message code="sign_up"/></button>
                             </div>
                         </div>
                     </form>
@@ -642,21 +700,8 @@
         </div>
     </div>
 
-    <!-- jQuery -->
-    <script src="vendor/jquery/jquery.min.js"></script>
-
-    <!-- Bootstrap Core JavaScript -->
-    <script src="vendor/bootstrap/js/bootstrap.min.js"></script>
-
     <!-- Plugin JavaScript -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js" integrity="sha384-mE6eXfrb8jxl0rzJDBRanYqgBxtJ6Unn4/1F7q4xRRyIw7Vdg9jP4ycT7x1iVsgb" crossorigin="anonymous"></script>
-
-    <!-- Contact Form JavaScript -->
-    <script src="js/jqBootstrapValidation.js"></script>
-    <script src="js/contact_me.js"></script>
-
-    <!-- Theme JavaScript -->
-    <script src="js/agency.min.js"></script>
+    
 
 </body>
-</html>
+<%@ include file = "template/footer.jsp" %>
