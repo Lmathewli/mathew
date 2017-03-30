@@ -1,28 +1,32 @@
 package com.mathew.service.base;
 
+import java.io.Serializable;
 import java.util.List;
 
-import org.springframework.data.mongodb.core.query.Query;
-import org.springframework.data.mongodb.core.query.Update;
+import org.mongodb.morphia.Key;
+import org.mongodb.morphia.query.Query;
+import org.mongodb.morphia.query.UpdateOperations;
+import org.mongodb.morphia.query.UpdateResults;
 
 import com.mathew.utils.tags.page.Page;
+import com.mongodb.WriteResult;
 
 public interface BaseService<T> {
-    public void insert(T entity);
+    public Key<T> insert(T entity);
 
-    public void delete(Query query);
+    public WriteResult delete(Query<T> query);
 
-    public List<T> find(Query query);
+    public List<Serializable> findList(Query<T> query);
 
-    public T findOne(Query query);
+    public T findOne(Query<T> query);
 
-    public void update(Query query, Update update);
+    public UpdateResults updateFirst(Query<T> query, UpdateOperations<T> update);
 
-    public void updateMulti(Query query, Update update);
+    public UpdateResults updateMulti(Query<T> query, UpdateOperations<T> update);
 
-    public T findById(String id);
+    public long count(Query<T> query);
 
-    public long count(Query query);
+    public Page<Serializable> getPage(int currentPage, int pageSize, Query<T> query);
 
-    public Page<T> getPage(int currentPage, Query query);
+    public Query<T> createQuery();
 }

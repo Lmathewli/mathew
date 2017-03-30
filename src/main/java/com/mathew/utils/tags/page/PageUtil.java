@@ -1,6 +1,8 @@
 package com.mathew.utils.tags.page;
 
-import org.springframework.data.mongodb.core.query.Query;
+import java.io.Serializable;
+
+import org.mongodb.morphia.query.Query;
 import org.springframework.stereotype.Component;
 
 import com.mathew.service.base.BaseService;
@@ -14,9 +16,8 @@ public class PageUtil<T> {
      * <h2>Page<User> page = pageUtil.convertToPage(currentPage, userService, "/mathew/signin");</h2>
      * @return
      */
-    public Page<T> convertToPage(Query query, int currentPage, BaseService<T> iService, String url) {
-        Page<T> page = iService.getPage(currentPage, query);
-
+    public Page<Serializable> convertToPageTage(Query<T> query, int currentPage, BaseService<T> iService, String url) {
+        Page<Serializable> page = iService.getPage(currentPage, PageConstants.PAGES_SIZE ,query);
         page.setUrl(url);
 
         return page;

@@ -2,17 +2,17 @@ package com.mathew.model;
 
 import java.util.Date;
 
-import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.index.CompoundIndex;
-import org.springframework.data.mongodb.core.index.CompoundIndexes;
-import org.springframework.data.mongodb.core.mapping.Document;
+import org.mongodb.morphia.annotations.Entity;
+import org.mongodb.morphia.annotations.Id;
+import org.mongodb.morphia.annotations.Index;
+import org.mongodb.morphia.annotations.Indexes;
 
 import com.mathew.utils.core.MD5Util;
 
-@Document(collection = "user")
-@CompoundIndexes({
-        @CompoundIndex(name = "emailAddress", def = "{'name': 1, 'birthday': -1}")
-})
+@Entity("user")
+@Indexes(
+    @Index("emailAddress")
+)
 public class User {
 
     @Id

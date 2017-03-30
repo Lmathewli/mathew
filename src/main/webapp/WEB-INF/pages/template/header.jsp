@@ -3,6 +3,9 @@
 <%@ taglib prefix="mvc" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ taglib  prefix="pages" uri="pages"%>
-
 <!DOCTYPE html>
 <html>
+<link href="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+<link href='https://fonts.googleapis.com/css?family=Kaushan+Script' rel='stylesheet' type='text/css'>
+<link href="<pages:urlPrefix/>/css/agency.min.css" rel="stylesheet">
+<link href="<pages:urlPrefix/>/css/custom.css" rel="stylesheet">
