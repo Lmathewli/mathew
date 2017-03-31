@@ -7,7 +7,7 @@ import org.mongodb.morphia.annotations.Id;
 import org.mongodb.morphia.annotations.Index;
 import org.mongodb.morphia.annotations.Indexes;
 
-import com.mathew.utils.core.MD5Util;
+import com.mathew.utils.Annotation.Password;
 
 @Entity("user")
 @Indexes(
@@ -74,8 +74,8 @@ public class User {
         return password;
     }
 
-    public void setPassword(String password) {
-        this.password = MD5Util.getMD5String(password);
+    public void setPassword(@Password String password) {
+        this.password = password;
     }
 
     public String getReminderQueryQuestion() {

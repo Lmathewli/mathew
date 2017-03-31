@@ -34,7 +34,7 @@ public class SignInController extends BaseController {
     public ModelAndView signin(User paramUser) {
         ModelAndView modelAndView = new ModelAndView();
         Query<User> query = userService.createQuery();
-        query.criteria(Constants.EMAIL_ADDRESS).equal(paramUser.getEmailAddress()).criteria(Constants.PASSWORD).equal(paramUser);
+        query.criteria(Constants.EMAIL_ADDRESS).equal(paramUser.getEmailAddress()).criteria(Constants.PASSWORD).equal(paramUser.getPassword());
         User user = userService.findOne(query);
 
         if (Validator.isNull(user)) {

@@ -4,7 +4,7 @@ import java.io.Serializable;
 import java.util.List;
 
 import org.mongodb.morphia.Key;
-import org.mongodb.morphia.Morphia;
+import org.mongodb.morphia.query.FindOptions;
 import org.mongodb.morphia.query.Query;
 import org.mongodb.morphia.query.UpdateOperations;
 import org.mongodb.morphia.query.UpdateResults;
@@ -14,64 +14,64 @@ import com.mathew.dao.impl.BaseMongoDaoImpl;
 import com.mathew.model.User;
 import com.mathew.service.base.BaseService;
 import com.mathew.utils.tags.page.Page;
-import com.mongodb.MongoClient;
 import com.mongodb.WriteResult;
 
-public class BaseMongoServiceImpl<T> implements BaseService<T> {
+public class BaseMongoServiceImpl implements BaseService<User> {
 
     @Autowired
-    MongoClient mongoClient;
-    @Autowired
-    Morphia morphia;
+    private BaseMongoDaoImpl dao;
 
-    public BaseMongoDaoImpl<T> getDao() {
-        BaseMongoDaoImpl<User> dao = new BaseMongoDaoImpl<User>(mongoClient, morphia, "mathew");
-        return (BaseMongoDaoImpl<T>) dao;
+    @Override
+    public Key<User> insert(User entity) {
+        return dao.save(entity);
     }
 
     @Override
-    public Key<T> insert(T entity) {
-        return getDao().save(entity);
+    public WriteResult delete(Query<User> query) {
+        return dao.deleteByQuery(query);
     }
 
     @Override
-    public WriteResult delete(Query<T> query) {
-        return getDao().deleteByQuery(query);
+    public List<Serializable> findList(Query<User> query) {
+        return dao.findIds(query);
     }
 
     @Override
-    public List<Serializable> findList(Query<T> query) {
-        return getDao().findIds(query);
+    public User findOne(Query<User> query) {
+        return dao.findOne(query);
     }
 
     @Override
-    public T findOne(Query<T> query) {
-        return getDao().findOne(query);
-    }
-
-    @Override
-    public UpdateResults updateFirst(Query<T> query, UpdateOperations<T> update) {
-        return getDao().updateFirst(query, update);
+    public UpdateResults updateFirst(Query<User> query, UpdateOperations<User> update) {
+        return dao.updateFirst(query, update);
         
     }
 
     @Override
-    public UpdateResults updateMulti(Query<T> query, UpdateOperations<T> update) {
-        return getDao().update(query, update);
+    public UpdateResults updateMulti(Query<User> query, UpdateOperations<User> update) {
+        return dao.update(query, update);
     }
 
     @Override
-    public long count(Query<T> query) {
-        return getDao().count(query);
+    public long count(Query<User> query) {
+        return dao.count(query);
+    }
+
+
+    @Override
+    public Query<User> createQuery() {
+        return dao.createQuery();
     }
 
     @Override
-    public Page<Serializable> getPage(int currentPage, int pageSize, Query<T> query) {
-        return getDao().getPage(currentPage,pageSize, query);
-    }
+    public Page<Serializable> getPage(int currentPage, int pageSize, Query<User> query) {
+        long totalCount = this.count(query);
+        query.fetch(new FindOptions().skip(currentPage).limit(pageSize));
+        List<Serializable> list = findList(query);
+        Page<Serializable> page = new Page<>();
+        page.setContext(list);
+        page.setTotalCount(totalCount);
 
-    @Override
-    public Query<T> createQuery() {
-        return getDao().createQuery();
+        return page;
     }
 }

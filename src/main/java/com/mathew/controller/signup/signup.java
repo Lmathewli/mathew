@@ -8,7 +8,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.mathew.controller.base.BaseController;
 import com.mathew.model.User;
 import com.mathew.service.base.BaseService;
-import com.mathew.utils.core.Validator;
+import com.mathew.utils.Annotation.Password;
 
 @Controller
 public class signup extends BaseController {
@@ -17,12 +17,8 @@ public class signup extends BaseController {
     private BaseService<User> userService;
 
     @RequestMapping("/signup")
-    public ModelAndView signUp(User user) {
+    public ModelAndView signUp(@Password String password) {
         ModelAndView modelAndView = new ModelAndView();
-
-        if (Validator.isNull(user)) {
-            modelAndView.setViewName("signup");
-        }
         modelAndView.setViewName("signup");
         return modelAndView;
     }

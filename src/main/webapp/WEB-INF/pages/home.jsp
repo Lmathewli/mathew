@@ -434,7 +434,7 @@
                 <div class="clearfix"></div>
                 <div class="input-group input-group-lg">
                   <span class="input-group-addon"><span class="mdi-action-account-circle"></span></span>
-                  <input type="text" id="fullname" name="fullname" class="form-control validate[required,custom[onlyChineseLetterNumber],minSize[2]]" placeholder="用户昵称">
+                  <input type="text" id="fullname" name="emailAddress" class="form-control validate[required,custom[onlyChineseLetterNumber],minSize[2]]" placeholder="用户昵称">
                 </div>
                 
                 <div class="input-group input-group-lg" style="display: none;">
