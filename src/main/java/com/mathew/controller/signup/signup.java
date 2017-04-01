@@ -8,7 +8,6 @@ import org.springframework.web.servlet.ModelAndView;
 import com.mathew.controller.base.BaseController;
 import com.mathew.model.User;
 import com.mathew.service.base.BaseService;
-import com.mathew.utils.Annotation.Password;
 
 @Controller
 public class signup extends BaseController {
@@ -17,9 +16,11 @@ public class signup extends BaseController {
     private BaseService<User> userService;
 
     @RequestMapping("/signup")
-    public ModelAndView signUp(@Password String password) {
+    public ModelAndView signUp(User user) {
         ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName("signup");
+        user.setPreferenceId("1");
+        userService.insert(user);
+        modelAndView.setViewName("home");
         return modelAndView;
     }
 }

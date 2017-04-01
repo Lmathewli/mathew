@@ -1,4 +1,4 @@
-package com.mathew.service.impl;
+package com.mathew.preference.service;
 
 import java.io.Serializable;
 import java.util.List;
@@ -12,68 +12,68 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.mathew.constants.MainConstants;
-import com.mathew.dao.impl.UserDao;
-import com.mathew.model.User;
+import com.mathew.preference.dao.PreferenceDao;
+import com.mathew.preference.model.Preference;
 import com.mathew.service.base.BaseService;
 import com.mathew.utils.tags.page.Page;
 import com.mongodb.WriteResult;
 @Service
-public class UserServiceImpl implements BaseService<User> {
+public class PreferenceService implements BaseService<Preference> {
 
     @Autowired
-    private UserDao dao;
+    private PreferenceDao dao;
 
     @Override
-    public Key<User> insert(User entity) {
+    public Key<Preference> insert(Preference entity) {
         return dao.save(entity);
     }
 
     @Override
-    public WriteResult delete(Query<User> query) {
+    public WriteResult delete(Query<Preference> query) {
         return dao.deleteByQuery(query);
     }
 
     @Override
-    public User FindOne(String id) {
-        Query<User> query = createQuery();
+    public List<Serializable> findList(Query<Preference> query) {
+        return dao.findIds(query);
+    }
+
+    @Override
+    public Preference FindOne(String id) {
+        Query<Preference> query = createQuery();
         query.criteria(MainConstants.ID_MODEL).equal(id);
         return this.findOne(query);
     }
 
     @Override
-    public List<Serializable> findList(Query<User> query) {
-        return dao.findIds(query);
-    }
-
-    @Override
-    public User findOne(Query<User> query) {
+    public Preference findOne(Query<Preference> query) {
         return dao.findOne(query);
     }
 
     @Override
-    public UpdateResults updateFirst(Query<User> query, UpdateOperations<User> update) {
+    public UpdateResults updateFirst(Query<Preference> query, UpdateOperations<Preference> update) {
         return dao.updateFirst(query, update);
         
     }
 
     @Override
-    public UpdateResults updateMulti(Query<User> query, UpdateOperations<User> update) {
+    public UpdateResults updateMulti(Query<Preference> query, UpdateOperations<Preference> update) {
         return dao.update(query, update);
     }
 
     @Override
-    public long count(Query<User> query) {
+    public long count(Query<Preference> query) {
         return dao.count(query);
     }
 
 
     @Override
-    public Query<User> createQuery() {
+    public Query<Preference> createQuery() {
         return dao.createQuery();
     }
 
     @Override
-    public Page<Serializable> getPage(int currentPage, int pageSize, Query<User> query) {
+    public Page<Serializable> getPage(int currentPage, int pageSize, Query<Preference> query) {
         long totalCount = this.count(query);
         query.fetch(new FindOptions().skip(currentPage).limit(pageSize));
         List<Serializable> list = findList(query);
@@ -85,7 +85,7 @@ public class UserServiceImpl implements BaseService<User> {
     }
 
     @Override
-    public UpdateOperations<User> createUpdateOperations() {
+    public UpdateOperations<Preference> createUpdateOperations() {
         return dao.createUpdateOperations();
     }
 }

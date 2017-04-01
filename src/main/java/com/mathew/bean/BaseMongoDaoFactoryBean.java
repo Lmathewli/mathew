@@ -3,9 +3,9 @@ package com.mathew.bean;
 import org.mongodb.morphia.Datastore;
 import org.springframework.beans.factory.config.AbstractFactoryBean;
 
-import com.mathew.dao.impl.BaseMongoDaoImpl;
+import com.mathew.dao.impl.UserDao;
 
-public class BaseMongoDaoFactoryBean extends AbstractFactoryBean<BaseMongoDaoImpl> {
+public class BaseMongoDaoFactoryBean extends AbstractFactoryBean<UserDao> {
 
     private Datastore ds;
     public Datastore getDs() {
@@ -17,7 +17,7 @@ public class BaseMongoDaoFactoryBean extends AbstractFactoryBean<BaseMongoDaoImp
     }
 
     @Override
-    protected BaseMongoDaoImpl createInstance() throws Exception {
+    protected UserDao createInstance() throws Exception {
 
         return null;
     }

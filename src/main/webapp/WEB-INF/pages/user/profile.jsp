@@ -1,8 +1,9 @@
 <%@ include file = "../template/header.jsp" %>
 <head>
-  <title><spring:message code="profile"></spring:message></title>
+  <title><spring:message code="profile"/></title>
 </head>
 <body>
-   <c:out value="${user._id }"></c:out>
+   <a href='<pages:urlPrefix/>/preference'><spring:message code="preference"/></a>
+   <c:out value="${user.id }"></c:out>
 </body>
 <%@ include file = "../template/footer.jsp" %>

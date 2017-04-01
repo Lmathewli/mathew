@@ -19,6 +19,8 @@ public interface BaseService<T> {
     public List<Serializable> findList(Query<T> query);
 
     public T findOne(Query<T> query);
+    
+    public T FindOne(String id);
 
     public UpdateResults updateFirst(Query<T> query, UpdateOperations<T> update);
 
@@ -29,4 +31,6 @@ public interface BaseService<T> {
     public Page<Serializable> getPage(int currentPage, int pageSize, Query<T> query);
 
     public Query<T> createQuery();
+    
+    public UpdateOperations<T> createUpdateOperations();
 }

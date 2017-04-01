@@ -8,7 +8,11 @@
             http://www.springframework.org/schema/data/mongo  
             http://www.springframework.org/schema/data/mongo/spring-mongo.xsd">
 
-    <bean id="userDao" class="com.mathew.dao.impl.BaseMongoDaoImpl">
+    <bean id="userDao" class="com.mathew.dao.impl.UserDao">
+        <constructor-arg ref="dataStore" />
+    </bean>
+
+    <bean id="preferenceDao" class="com.mathew.preference.dao.PreferenceDao">
         <constructor-arg ref="dataStore" />
     </bean>
 

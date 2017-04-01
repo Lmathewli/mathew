@@ -1,6 +1,6 @@
 <%@ include file = "template/header.jsp" %>
 <head>
-  <title><spring:message code="welcome"></spring:message></title>
+   <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
 </head>
 <body id="page-top" class="index">
     <!-- Navigation -->

@@ -16,8 +16,7 @@ import com.mathew.utils.Annotation.Password;
 public class User {
 
     @Id
-    private String _id;
-    private String userId;
+    private String id;
     private Integer age;
     private String phone;
     private String emailAddress;
@@ -27,6 +26,7 @@ public class User {
     private String screenName;
     private String qqId;
     private String weChatId;
+    private String preferenceId;
     private Short language;
     private Date loginDate;
     private Date lastLoginDate;
@@ -37,13 +37,20 @@ public class User {
     private Short agreedToTermsOfUse;
     private Short emailAddressVerified;
 
-
-    public String get_id() {
-        return _id;
+    public String getId() {
+        return id;
     }
 
-    public void set_id(String _id) {
-        this._id = _id;
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public String getPreferenceId() {
+        return preferenceId;
+    }
+
+    public void setPreferenceId(String preferenceId) {
+        this.preferenceId = preferenceId;
     }
 
     public Integer getAge() {
@@ -189,21 +196,4 @@ public class User {
     public void setEmailAddressVerified(Short emailAddressVerified) {
         this.emailAddressVerified = emailAddressVerified;
     }
-
-    @Override
-    public String toString() {
-        return "{User {_id:" + _id + ", userId:" + userId + ", age:" + age
-                + ", phone:" + phone + ", emailAddress:" + emailAddress
-                + ", password:" + password + ", reminderQueryQuestion:"
-                + reminderQueryQuestion + ", reminderQueryAnswer:"
-                + reminderQueryAnswer + ", screenName:" + screenName
-                + ", qqId:" + qqId + ", weChatId:" + weChatId + ", language:"
-                + language + ", loginDate:" + loginDate + ", lastLoginDate:"
-                + lastLoginDate + ", lastLoginIP:" + lastLoginIP
-                + ", failedLoginAttempts:" + failedLoginAttempts + ", lockout:"
-                + lockout + ", lockoutDate:" + lockoutDate
-                + ", agreedToTermsOfUse:" + agreedToTermsOfUse
-                + ", emailAddressVerified:" + emailAddressVerified + "}}";
-    }
-
 }
