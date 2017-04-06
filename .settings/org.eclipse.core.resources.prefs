@@ -3,5 +3,6 @@ encoding//src/main/java=UTF-8
 encoding//src/main/resources=UTF-8
 encoding//src/main/resources/config=UTF-8
 encoding//src/main/webapp/WEB-INF/pages/home.jsp=UTF-8
+encoding//src/main/webapp/WEB-INF/pages/pay/pay.jsp=UTF-8
 encoding//src/main/webapp/WEB-INF/pages/user/profile.jsp=UTF-8
 encoding//src/test/java=UTF-8

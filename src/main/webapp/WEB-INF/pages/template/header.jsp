@@ -10,3 +10,4 @@
 <link href="<pages:urlPrefix/>/css/agency.min.css" rel="stylesheet">
 <link href="<pages:urlPrefix/>/css/custom.css" rel="stylesheet">
 <meta name="content-type" content="text/html; charset=UTF-8">
+<script src="//cdn.bootcss.com/jquery/3.2.1/jquery.js"></script>

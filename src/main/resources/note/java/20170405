@@ -1,0 +1,13 @@
+*[apache]Send Message*
+
+1.  创建一个 HttpClients--> HttpClients.createDefault()   
+2.  创建一个 HttpPost(url) --> new   
+3.  创建一个 UrlEncodedFormEntity(list, encode) --> new UrlEncodedFormEntity(list,encode)   
+4.  HttpPost.setEntity(UrlEncodedFormEntity)   
+5.  CloseableHttpResponse = HttpClients.execute(HttpPost)   
+6.  CloseableHttpResponse.getStatusLine().getStatusCode == 200 --> success   
+
+*[scheduler]cronExpression* ？
+
+*[butler]*--> istatus的改变
+

@@ -39,6 +39,9 @@
                     <li>
                         <a class="page-scroll" href="#signUp">Sign Up</a>
                     </li>
+                    <li>
+                        <a href='<pages:urlPrefix/>donate'>donate</a>
+                    </li>
                 </ul>
             </div>
             <!-- /.navbar-collapse -->
